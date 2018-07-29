@@ -10,6 +10,11 @@ images.bee.src = "images/bee.png";
 images.background = new Image();
 images.background.src = "images/honeycomb.png";
 
+function mod(x, value) {
+  const mod = x % value;
+  return mod < 0 ? mod + value : mod;
+}
+
 // Bee
 function Bee(){
 	
@@ -33,8 +38,15 @@ function Bee(){
 		var dx = self.initX - Mouse.x;
 		var dy = self.initY - Mouse.y;
 		if(!self.dancing && !self.returning){
-			var rotation = Math.atan2(dy,dx) - Math.TAU/4;
-			self.rotation = rotation;
+			var rotation = mod(Math.atan2(dy,dx) - Math.TAU/4, Math.TAU)
+      if (Math.abs(self.rotation - rotation) < Math.TAU / 24) {
+			  self.rotation = rotation;
+      } else {
+        var alpha = .9
+        var newRotation = (self.rotation * alpha) + (rotation * (1-alpha))
+        self.rotation = mod(newRotation, Math.TAU)
+      }
+
 		}
 
 		// Mouse
