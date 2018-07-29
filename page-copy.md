@@ -28,4 +28,4 @@ Not all potential sites are created equal. The bees use democracy to decide whic
 
 > It's important to note that honeybees exist in a "unitary democracy" meaning that all the bees share a common interest.
 
-Honey bee scouts advocate for specific site locations by repeating their dance.
+Honey bee scouts advocate for specific site locations by repeating their dance for more bees to see. They indicate the quality of the sites they're dancing for with vigor and repetition. The more vigorous repetitions of a bee's dance, the better the site.
