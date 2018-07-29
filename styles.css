@@ -1,65 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html {
-  /* position: relative;
-  min-height: 100%; */
+  position: relative;
+  height: 100%;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Courier New, Courier, monospace;
-  color: #fff;
-  background-color: #865923;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  font-family: courier new, monospace;
+  height: 100%;
+  font-family: "Roboto", Courier New, Courier, monospace;
+  color: #473010;
+  font-size: 1.1em;
+  background-color: #efbf4f;
   font-weight: normal;
-  border-left: 3px solid rgba(0, 0, 0, 0.6);
-  padding-left: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  margin-left: -10px;
-}
-
-h1 {
-  font-size: 24px;
-}
-
-h2,
-.subtitle {
-  font-size: 18px;
-}
-
-.subtitle {
 }
 
 .page {
+  height: auto;
+  min-height: 100%;
+  margin: 0 auto -2em; /* for the footer */
+  background-image: url("./images/honeycomb_light.png");
+  background-repeat: repeat;
+  background-size: 500px;
+  background-position: center;
+}
+
+.content {
+  padding: 2em 0 4em; /* leaves room for footer */
+  width: 90%;
+  margin: 0 auto;
+  max-width: 650px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25em;
+  font-family: "Roboto Slab", Courier New, Courier, monospace;
+  font-weight: normal;
+}
+
+h1, h2, h3, {text-align: center; padding: 0 0 .25em;}
+h4, h5, h6 {text-align: left; padding: .25em 0;}
+
+p {
+  line-height: 1.25em;
+  padding: .25em 0 .5em;
+  font-weight: lighter;
+}
+
+blockquote {
+  width: 90%;
+  margin: 0 auto;
+  padding: .25em 0;
+  font-style: italic;
+  font-size: .95em;
 }
 
 .link {
-  color: yellow;
+  color: #753c00;
+  text-decoration: none;
 }
 
-article {
-  /* background: rgb(23, 78, 89); */
-  margin: 20px 0;
+.note {
+  width: 80%;
+  color: #845700;
+  text-align: center;
+  margin: .25em 0;
+  margin: 0 auto;
+  background-color: #e5a510;
+} /* Maybe this could pop up on the screen and then move up/down out of the way? */
+
+.image {
+  max-width: 100%;
 }
 
-header,
-section {
-  width: 800px;
-  margin: 50px auto;
-  padding: 0 20px;
-  /* background: rgb(64, 32, 71); */
-}
+.banner, .intro, .dddemocracy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  } /* don't really get flex, tbh */ 
 
-iframe {
-  border: 0;
-  overflow: hidden;
-  margin: 0;
+.playable { /* this is the "explorable" stuff */
+  border: none;
   width: 100%;
-  height: 520px;
+  height: 500px;
+  padding: 0 0 .5em;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+
+.inside { /* for the in-the-hive bee simulations */
+}
+
+#footer {
+  width: 100%;
+  margin: -2em auto 0; /* places footer into content */
+  height: 1em;
+  padding: .5em 0;
+  text-align: center;
+  color: #ffcd51;
+  background-color: #ce9102;
+  overflow: hidden;
+  font-weight: lighter;
 }

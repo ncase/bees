@@ -8,7 +8,7 @@ images.bee = new Image();
 images.bee.src = "images/bee.png";
 
 images.background = new Image();
-images.background.src = "images/honeycomb.png";
+//images.background.src = "images/honeycomb.png"; // let's try putting the background on the page instead of in the playable component
 
 // Bee
 function Bee(){
