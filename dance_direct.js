@@ -193,7 +193,7 @@ for(i = 0; i < 12; i++){
 function update(){
 
 	// Update bee
-	if (Math.random() > 0.95) {
+	if (Math.random() > 0.90) {
 		var rand = Math.random();
 		if (rand <= 0.25) {
 			bees.push(new AutonomousBee(-10, Math.random()*canvas.height));
