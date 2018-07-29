@@ -6,7 +6,7 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: Courier New, Courier6, monospace;
+  font-family: Courier New, Courier, monospace;
   color: #fff;
   background-color: #865923;
 }
@@ -16,4 +16,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.link {
+  color: yellow;
 }
