@@ -7,6 +7,9 @@ var images = {};
 images.bee = new Image();
 images.bee.src = "bee.png";
 
+images.background = new Image();
+images.background.src = "honeycomb.png";
+
 // Bee
 function Bee(){
 	
@@ -92,12 +95,15 @@ function update(){
 	// Update bee
 	bee.update();
 
-	// Draw bee
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	ctx.save();
+  // draw bg
+  ctx.drawImage(images.background, 0, 0, canvas.width, canvas.height);
 	ctx.scale(2,2);
+	// Draw bee
 	bee.draw(ctx);
 	ctx.restore();
+  
 
 	window.requestAnimationFrame(update);
 
