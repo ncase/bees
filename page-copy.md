@@ -8,20 +8,20 @@ Unfortunately, bees have been egregiously misrepresented by these stereotypes. I
 
 Instead, honey bees communicate with one-another to collectively make decisions. And they do this by dancing!
 
-`##########################################  
-##########################################  
-insert first bee waggle dance interaction  
-##########################################  
-##########################################`
+`##########################################`  
+`##########################################`  
+`insert first bee waggle dance interaction`  
+`##########################################`  
+`##########################################`  
 > Click and hold to direct the bee's dance.
 
 Sometimes bees have to make important decisions that affect the whole colony like where to move to build a new hive. Scouts investigate the hive site options and dance the directions to their sisters to tell them where to go check.
 
-`##########################################  
-##########################################  
-insert inside-outside interaction  
-##########################################  
-##########################################`
+`##########################################`  
+`##########################################`  
+`insert inside-outside interaction`  
+`##########################################`  
+`##########################################`  
 > Send 6 scouts to check out the oak tree.
 
 Not all potential sites are created equal. The bees use democracy to decide which option to actually move to for their new hive.
