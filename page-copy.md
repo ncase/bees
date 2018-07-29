@@ -1,6 +1,6 @@
 ## Have you heard these terms?
-- _**queen bee (noun):** A woman who has a dominant or controlling position in a particular group or sphere_
-- _**hive mind (noun):** A notional entity consisting of a large number of people who share their knowledge or opinions with one another, regarded as producing either uncritical conformity or collective intelligence._
+- _**[queen bee](https://www.merriam-webster.com/dictionary/queen%20bee) (noun):** A woman who has a dominant or controlling position in a particular group or sphere_
+- _**[hive mind](https://www.merriam-webster.com/dictionary/hive%20mind) (noun):** A notional entity consisting of a large number of people who share their knowledge or opinions with one another, regarded as producing either uncritical conformity or collective intelligence._
 
 Unfortunately, bees have been egregiously misrepresented by these stereotypes. In reality, honey bee decision-making is much more complex than following the wills of a singular ruler. In fact, the queen isn't much of a leader at all!
 
