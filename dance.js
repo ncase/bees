@@ -32,14 +32,14 @@ function Bee(){
 		var dy = self.initY - Mouse.y;
 		if(!self.dancing){
 			var rotation = Math.atan2(dy,dx) - Math.TAU/4;
-			self.rotation = rotation;
+			self.rotation = self.returning ? rotation + Math.PI : rotation;
 		}
 
 		// Mouse
 		if(self.dancing && !Mouse.pressed){
 			self.returning = true;
 		}
-		self.dancing = Mouse.pressed;
+		self.dancing = !self.returning && Mouse.pressed;
 
 		// DANCE?
 		if(self.dancing && !self.returning){
@@ -49,8 +49,9 @@ function Bee(){
 
 		// RETURN
 		if(self.returning){
-			self.x = self.x*0.8 + self.initX*0.2;
-			self.y = self.y*0.8 + self.initY*0.2;
+      var alpha = 0.9
+			self.x = self.x*alpha + self.initX*(1-alpha);
+			self.y = self.y*alpha + self.initY*(1-alpha);
 			var dx = self.initX - self.x;
 			var dy = self.initY - self.y;
 			var d2 = dx*dx + dy*dy;
