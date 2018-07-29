@@ -210,8 +210,10 @@ function update(){
 	}
 	bee.update();
 	for(i = 0; i < bees.length; i++){
-		if (Math.sqrt(Math.pow(bee.x - bees[i].x, 2) + Math.pow(bee.y - bees[i].y, 2)) < 50){
-			bees[i].fly(bee.rotation);
+		if (bee.dancing) {
+			if (Math.sqrt(Math.pow(bee.x - bees[i].x, 2) + Math.pow(bee.y - bees[i].y, 2)) < 50){
+				bees[i].fly(bee.rotation);
+			}
 		}
 		bees[i].update();
 	}
