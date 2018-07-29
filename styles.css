@@ -109,8 +109,18 @@ blockquote {
   background-color: transparent;
 }
 
-
 .inside { /* for the in-the-hive bee simulations */
+  padding: 40px;
+  /*overflow: none;
+  background-image: url("./images/hexwindow.png");*/
+}
+
+.inside img {
+  position: absolute;
+  margin:-50px -15px 0;
+  width: 100%;
+  max-width: 600px;
+  pointer-events:none;
 }
 
 #footer {
