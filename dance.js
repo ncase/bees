@@ -5,10 +5,10 @@ var ctx = canvas.getContext("2d");
 
 var images = {};
 images.bee = new Image();
-images.bee.src = "bee.png";
+images.bee.src = "images/bee.png";
 
 images.background = new Image();
-images.background.src = "honeycomb.png";
+images.background.src = "images/honeycomb.png";
 
 // Bee
 function Bee(){
