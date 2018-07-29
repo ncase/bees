@@ -25,19 +25,31 @@ function Bee(){
 	self.returning = false;
 	self.danceSpeed = 2;
 
+	self.returnRadius = 5;
+
 	self.update = function(){
 
 		// Rotation
 		var dx = self.initX - Mouse.x;
 		var dy = self.initY - Mouse.y;
-		if(!self.dancing){
+		if(!self.dancing && !self.returning){
 			var rotation = Math.atan2(dy,dx) - Math.TAU/4;
-			self.rotation = self.returning ? rotation + Math.PI : rotation;
+			self.rotation = rotation;
 		}
 
 		// Mouse
 		if(self.dancing && !Mouse.pressed){
+			self.distX = Math.abs(self.x - self.initX);
+			self.distY = Math.abs(self.y - self.initY);
+			self.lineX = self.x;
+			self.lineY = self.y;
+			// self.slope = (self.y - self.initY)/(self.x - self.initX);
+			// self.angle = self.rotation;
 			self.returning = true;
+			console.log(self.distX + self.distY);
+			if (self.distX + self.distY <= 45){
+				self.returnImmediately = true;
+			}
 		}
 		self.dancing = !self.returning && Mouse.pressed;
 
@@ -48,16 +60,40 @@ function Bee(){
 		}
 
 		// RETURN
-		if(self.returning){
-      var alpha = 0.9
-			self.x = self.x*alpha + self.initX*(1-alpha);
-			self.y = self.y*alpha + self.initY*(1-alpha);
-			var dx = self.initX - self.x;
-			var dy = self.initY - self.y;
+		if(self.returning) {
+			var alpha = 0.95;
+
+			// Ah, I'm using these to measure progress along the line from the turnaround point to the initial point
+			var progress = 1 - (Math.abs(self.lineX - self.initX)/self.distX + 
+								 Math.abs(self.lineY - self.initY)/self.distY)/2;
+			self.lineX = self.lineX*alpha + self.initX*(1-alpha);
+			self.lineY = self.lineY*alpha + self.initY*(1-alpha);
+
+			var omega = 0.95 - progress*(0.15);
+
+			var dx = self.x - self.initX;
+			var dy = self.y - self.initY;
+
+			var rotation = Math.atan2(dy,dx) - Math.TAU/4;
+
 			var d2 = dx*dx + dy*dy;
+			if (self.returnImmediately){
+				self.rotation = self.rotation*alpha + (1-alpha)*(Math.atan2(self.initY - Mouse.y,self.initX - Mouse.x) - Math.TAU/4 - rotation);
+				self.x = self.x*alpha + self.initX*(1-alpha);
+				self.y = self.y*alpha + self.initY*(1-alpha);
+			} else {
+				self.rotation = self.rotation*(omega) + (1 - omega)*(rotation);
+				self.x += Math.sin(self.rotation)*self.danceSpeed;
+				self.y -= Math.cos(self.rotation)*self.danceSpeed;
+			}
+			if(Math.abs(rotation - self.rotation) <= 0.05 && d2 < 10){
+				self.returnImmediately = true;
+			}
 			if(d2<5){
 				self.x = self.initX;
 				self.y = self.initY;
+				self.rotation = rotation*alpha + (1-alpha)*(Math.atan2(self.initY - Mouse.y,self.initX - Mouse.x) - Math.TAU/4 - rotation);
+				self.returnImmediately = false;
 				self.returning = false;
 			}
 		}
