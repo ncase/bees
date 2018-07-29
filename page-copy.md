@@ -1,4 +1,4 @@
-Honey bees can be found all over the world. While many species of bees are important pollinators, honey bees are especially well-known for their production of honey. Despite their popularity, bees also have come to be associated with some harmful stereotypes.
+~~Honey bees can be found all over the world. While many species of bees are important pollinators, honey bees are especially well-known for their production of honey. Despite their popularity, bees also have come to be associated with some harmful stereotypes.~~
 
 ## What comes to mind when you think about bees?
 
@@ -10,3 +10,8 @@ In reality, bee decision-making is much more complex than following the wills of
 
 ## Dance Dance Democracy
 
+Instead, bees communicate with one-another to collectively make decisions. And they do this by dancing!
+
+`insert first bee wiggle dance interaction`
+
+To make important decisions like where to move the hive, bees consider several options before making a choice.
