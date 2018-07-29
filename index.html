@@ -43,6 +43,11 @@
   <!-- CSS -->
   <link href="styles.css" rel="stylesheet" type="text/css">
 
+  <!-- allow new-fangled html elements in older ie. must be placed in the <head> element, after any stylesheets  -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <![endif]-->
+
   <title>Beemocracy – a dancing-based decentralised consensus model for decision-making</title>
   <meta name="description" content="a dancing-based decentralised consensus model for decision-making" />
   <link rel="icon" type="image/png" href="favicon.png">
@@ -52,17 +57,24 @@
 
   <div class="page">
 
-    <h1>Beemocracy</h1>
-    <h2>a dancing-based decentralised consensus model for decision-making</h2>
+    <article>
 
-    <p>how a single bee can spread ideas ✨</p>
+      <header>
+        <h1>Beemocracy</h1>
+        <div class="subtitle">a dancing-based decentralised consensus model for decision-making</div>
+        <p>how a single bee can spread ideas ✨</p>
+      </header>
 
-    <p><a class="link" href="./dance.html">Start dancing!</a></p>
+      <section>
+        <h2>start dancing!</h2>
+    	   <iframe src="./dance.html" id="dance" scrolling="no"></iframe>
+      </section>
+    </article>
   </div>
-
 </body>
 
 <!-- Put scripts here! -->
 <script src="js/Mouse.js"></script>
+
 
 </html>
