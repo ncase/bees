@@ -90,7 +90,6 @@ blockquote {
   border: none;
   width: 100%;
   height: 500px;
-  padding: 0 0 .5em;
   overflow: hidden;
   display: flex;
   justify-content: center;
