@@ -25,8 +25,6 @@ function Bee(){
 	self.returning = false;
 	self.danceSpeed = 2;
 
-	self.returnRadius = 5;
-
 	self.update = function(){
 
 		// Rotation
