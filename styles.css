@@ -15,8 +15,13 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: helvetica, sans-serif;
+  font-family: courier new, monospace;
   font-weight: normal;
+  border-left: 3px solid rgba(0, 0, 0, 0.6);
+  padding-left: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  margin-left: -10px;
 }
 
 h1 {
