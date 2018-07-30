@@ -45,8 +45,8 @@ function AutonomousBee(x, y){
 		ctx.translate(self.x, self.y);
 		ctx.rotate(self.rotation);
 
-		self.waggle += 1;
-		var r = Math.sin(self.waggle)*0.05;
+		self.waggle += 1; // this is the jitter for the sisters
+		var r = Math.sin(self.waggle)*0.03;
 		ctx.rotate(r);
 		
 
@@ -55,7 +55,7 @@ function AutonomousBee(x, y){
 		ctx.restore();
 	};
 
-	self.fly = function(rotation){
+	self.fly = function(rotation){ // need to add animation
 		self.rotation = rotation;
 		self.speed = 5;
 	}
