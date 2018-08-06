@@ -1,6 +1,6 @@
 Math.TAU = Math.PI*2;
 
-var canvas = document.getElementById("canvas");
+var canvas = document.getElementById("canvas_dance");
 var ctx = canvas.getContext("2d");
 
 var images = {};

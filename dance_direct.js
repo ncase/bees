@@ -1,6 +1,6 @@
 Math.TAU = Math.PI*2;
 
-var canvas = document.getElementById("canvas");
+var canvas = document.getElementById("canvas_dance_direct");
 var ctx = canvas.getContext("2d");
 
 var images = {};
@@ -78,6 +78,7 @@ function Bee(){
 
 	self.update = function(){
 
+		// console.log("rotation:  " + self.rotation)
 		// Rotation
 		var dx = self.initX - Mouse.x;
 		var dy = self.initY - Mouse.y;
@@ -95,7 +96,14 @@ function Bee(){
 			// self.slope = (self.y - self.initY)/(self.x - self.initX);
 			// self.angle = self.rotation;
 			self.returning = true;
-			console.log(self.distX + self.distY);
+
+			var dx = self.x - self.initX;
+			var dy = self.y - self.initY;
+
+			self.prevRotation = Math.atan2(dy,dx) - Math.TAU/4;
+
+			console.log("STARTED RETURN: " + self.prevRotation)
+
 			if (self.distX + self.distY <= 45){
 				self.returnImmediately = true;
 			}
@@ -119,18 +127,32 @@ function Bee(){
 			self.lineY = self.lineY*alpha + self.initY*(1-alpha);
 
 			// The bee changes direction towards its origin faster as it gets closer (makes more progress)
-			var omega = 0.95 - progress*(0.15);
+			// var omega = 0.95 - progress*(0.15);
+
+			var omega = 0.95;
 
 			var dx = self.x - self.initX;
 			var dy = self.y - self.initY;
 
 			// Points to the bee's origin
 			var rotation = Math.atan2(dy,dx) - Math.TAU/4;
+			
+			// FIXES OUT OF CONTROL OSCILLATION 
+			while (Math.abs(self.prevRotation - rotation) > 1) {
+				// console.log("TRIED TO FIX " + rotation + " => " + (rotation + Math.TAU))
+				if (rotation > self.prevRotation) {
+					rotation -= Math.TAU;
+				}
+				else {
+					rotation += Math.TAU;
+				}
+			}
+			self.prevRotation = rotation;
 
 			var d2 = dx*dx + dy*dy;
 			// Kind of hacky, but this additional check avoids the bee "overshooting" its origin and forces it to return immediately
 			if (self.returnImmediately){
-				// Doesn't work as inteneded -- the goal was to gradually point towards the mouse when close to the origin
+				// Doesn't work as intended -- the goal was to gradually point towards the mouse when close to the origin
 				self.rotation = self.rotation*alpha + (1-alpha)*(Math.atan2(self.initY - Mouse.y,self.initX - Mouse.x) - Math.TAU/4 - rotation);
 				self.x = self.x*alpha + self.initX*(1-alpha);
 				self.y = self.y*alpha + self.initY*(1-alpha);
@@ -193,7 +215,7 @@ for(i = 0; i < 12; i++){
 function update(){
 
 	// Update bee
-	if (Math.random() > 0.90) {
+	if (Math.random() > 0.80) {
 		var rand = Math.random();
 		if (rand <= 0.25) {
 			bees.push(new AutonomousBee(-10, Math.random()*canvas.height));
@@ -215,13 +237,20 @@ function update(){
 				bees[i].fly(bee.rotation);
 			}
 		}
-		bees[i].update();
+		// If a bee is outside the canvas, delete it
+		if (bees[i].x < -15 || bees[i].x > 515 || bees[i].y < -15 || bees[i].y > 515) {
+			bees.splice(i, 1);
+			i++;
+		}
+		else {
+			bees[i].update();
+		}
 	}
 
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 	ctx.save();
-  // draw bg
-  ctx.drawImage(images.background, 0, 0, canvas.width, canvas.height);
+  	// draw bg
+  	ctx.drawImage(images.background, 0, 0, canvas.width, canvas.height);
 	ctx.scale(2,2);
 	// Draw bee
 	bee.draw(ctx);
