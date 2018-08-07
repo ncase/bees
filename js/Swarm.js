@@ -1,4 +1,5 @@
-// Autonomous Bee
+Math.TAU = Math.PI*2;
+
 function AutonomousBee(x, y){
 	
 	var self = this;
@@ -9,13 +10,24 @@ function AutonomousBee(x, y){
 	self.y = self.initY;
 	self.rotation = Math.random()*Math.TAU;
 
+	self.takeoff = false;
 	self.flying = false;
+	self.animate = 0;
 
+	// SWARM BEHAVIOR
 	self.speed = .5;
+	self.flyingSpeed = 5;
+	self.swarmJitter = 0.03;
+	self.offset = -30;
+	self.scale = 60;
 
 	self.update = function(){
 		self.x += self.speed * Math.sin(self.rotation);
 		self.y -= self.speed * Math.cos(self.rotation);
+
+		// Unnecessary unless updating flight speed.
+		// self.x += (self.flying ? self.flyingSpeed : self.speed) * Math.sin(self.rotation);
+		// self.y -= (self.flying ? self.flyingSpeed : self.speed) * Math.cos(self.rotation);
 
 		self.swerve = (Math.random()-0.5)*0.1;
 
@@ -34,18 +46,30 @@ function AutonomousBee(x, y){
 		ctx.rotate(self.rotation);
 
 		self.waggle += 1; // this is the jitter for the sisters
-		var r = Math.sin(self.waggle)*0.03;
+		var r = Math.sin(self.waggle)*self.swarmJitter;
 		ctx.rotate(r);
 		
-
-		ctx.drawImage(images.bee, -30, -30, 60, 60);
+		if (self.takeoff && self.animate == 0) {
+			self.offset -= 1;
+			self.scale += 2;
+			self.takeoff = (self.scale < 88);
+		}
 		
+		if (self.flying && self.animate == 0) {
+			ctx.drawImage(images.beefly, self.offset, self.offset, self.scale, self.scale);
+			self.animate = 1;
+		} else {
+			ctx.drawImage(images.bee, self.offset, self.offset, self.scale, self.scale);
+			self.animate = 0;
+		}
 		ctx.restore();
 	};
 
 	self.fly = function(rotation){ // need to add animation
 		self.rotation = rotation;
-		self.speed = 5;
+		self.flying = true;
+		self.speed = self.flyingSpeed;
+		self.takeoff = true;
 	}
 
 }

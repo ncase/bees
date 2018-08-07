@@ -1,3 +1,5 @@
+Math.TAU = Math.PI*2;
+
 function Bee(){
 	
 	var self = this;
@@ -10,7 +12,13 @@ function Bee(){
 
 	self.dancing = false;
 	self.returning = false;
+	self.returnImmediately = false;
+	
+	// BEE BEHAVIOR
 	self.danceSpeed = 2;
+	self.returnSpeed = 1.5;
+	self.jitter = 0.1;
+	self.danceJitter = 0.3;
 
 	self.turnAround = false;
 
@@ -57,6 +65,18 @@ function Bee(){
 
 			var dx = self.x - self.initX;
 			var dy = self.y - self.initY;
+			var d2 = dx*dx + dy*dy;
+
+			// If we're way too close (avoids unregulated oscillation lol)
+			if(d2 < self.returnSpeed*self.returnSpeed){
+				console.log("yay")
+				self.x = self.initX;
+				self.y = self.initY;
+				self.turnAround = true;
+				self.returnImmediately = false;
+				self.returning = false;
+				return;
+			}
 
 			// Points to the bee's origin
 			var rotation = Math.atan2(dy,dx) - Math.TAU/4;
@@ -87,15 +107,6 @@ function Bee(){
 			if(Math.abs(rotation - self.rotation) <= 0.05 && d2 < 10){
 				self.returnImmediately = true;
 			}
-			// If we're way too close (avoids unregulated oscillation lol)
-			if(d2<5){
-				self.x = self.initX;
-				self.y = self.initY;
-				self.turnAround = true;
-				self.returnImmediately = false;
-				self.returning = false;
-				self.pressed = 0;
-			}
 		}
 
 	};
@@ -111,11 +122,11 @@ function Bee(){
 		// WAGGLE
 		if(self.dancing){
 			self.waggle += 1;
-			var r = Math.sin(self.waggle)*0.3;
+			var r = Math.sin(self.waggle)*self.danceJitter;
 			ctx.rotate(r);
 		} else if (self.returning) {
 			self.waggle += 1;
-			var r = Math.sin(self.waggle)*0.1;
+			var r = Math.sin(self.waggle)*self.jitter;
 			ctx.rotate(r);
 		}
 		

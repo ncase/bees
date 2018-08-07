@@ -1,11 +1,11 @@
-Math.TAU = Math.PI*2;
-
 var canvas = document.getElementById("canvas_dance_direct");
 var ctx = canvas.getContext("2d");
 
 var images = {};
 images.bee = new Image();
 images.bee.src = "images/bee.png";
+images.beefly = new Image();
+images.beefly.src = "images/beefly.png";
 
 images.background = new Image();
 images.background.src = "images/honeycomb.png";
@@ -42,4 +42,3 @@ update();
 window.onload = function(){
 	Mouse.init(canvas);
 };
-
