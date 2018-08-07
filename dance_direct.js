@@ -127,9 +127,7 @@ function Bee(){
 			self.lineY = self.lineY*alpha + self.initY*(1-alpha);
 
 			// The bee changes direction towards its origin faster as it gets closer (makes more progress)
-			// var omega = 0.95 - progress*(0.15);
-
-			var omega = 0.95;
+			var omega = 0.95 - progress*(0.15);
 
 			var dx = self.x - self.initX;
 			var dy = self.y - self.initY;
