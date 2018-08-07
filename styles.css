@@ -69,9 +69,16 @@ blockquote {
   font-size: .95em;
 }
 
+a {
+  text-decoration: none;
+}
+
 .link {
   color: #753c00;
-  text-decoration: none;
+}
+
+.link:hover {
+  color: #845700;
 }
 
 .note {
@@ -107,6 +114,7 @@ blockquote {
 
 .inside { /* for the in-the-hive bee simulations */
   padding: 40px;
+  margin: .75em 0;
   /*overflow: none;
   background-image: url("./images/hexwindow.png");*/
 }
