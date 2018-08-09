@@ -1,3 +1,4 @@
+/* Pretty sure we don't need this with css reset */
 * {
   margin: 0;
   padding: 0;
@@ -42,6 +43,10 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3, {text-align: center; padding: 0 0 .25em;}
 
+h1 {
+  font-size: 2em;
+}
+
 h2 {
   font-size: 1em;
   padding: 0 0 .25em;
@@ -69,12 +74,23 @@ blockquote {
   font-size: .95em;
 }
 
+ul {
+  list-style-type: disc;
+}
+
+li {
+  line-height: 1.25em;
+  padding: .25em 0 .5em;
+  font-weight: lighter;
+}
+
 a {
   text-decoration: none;
 }
 
 .link {
   color: #753c00;
+  font-weight: bold;
 }
 
 .link:hover {
