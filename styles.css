@@ -85,8 +85,8 @@ a {
   width: 80%;
   color: #845700;
   text-align: center;
-  margin: .25em 0;
-  margin: 0 auto;
+  margin: .25em auto;
+  padding: 10px 0;
   background-color: #e5a510;
 } /* Maybe this could pop up on the screen and then move up/down out of the way? */
 
