@@ -17,7 +17,7 @@ function Bee(){
 	// BEE BEHAVIOR
 	self.danceSpeed = 2;
 	self.returnSpeed = 1.5;
-	self.jitter = 0.05;
+	self.jitter = 0.03;
 	self.danceJitter = 0.3;
 
 	self.turnAround = false;
