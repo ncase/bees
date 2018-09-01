@@ -13,7 +13,7 @@ body {
   font-family: "Roboto", Courier New, Courier, monospace;
   color: #473010;
   font-size: 1.1em;
-  background-color: #efbf4f;
+  background-color: #f7ca59;
   font-weight: normal;
 }
 
@@ -81,40 +81,42 @@ a {
   color: #845700;
 }
 
-.note {
+
+.hivenote, .hivenote2, .note {
   width: 80%;
-  color: #845700;
+  position: relative;
+  font-family: "Roboto Slab", Courier New, Courier, monospace;
   text-align: center;
-  margin: .25em 0;
-  margin: 0 auto;
-  background-color: #e5a510;
+  padding: .25em;
+  z-index: 1;
 } /* Maybe this could pop up on the screen and then move up/down out of the way? */
+
+.note {
+  padding: .5em;
+  margin: .25em auto;
+  background-color: #efb528;
+}
+
+.hivenote {
+  margin: -.75em auto -1.5em;
+}
+
+.hivenote2 {
+  margin: -1.5em auto -.75em;
+}
 
 .image {
   max-width: 100%;
 }
 
 .banner, .intro, .dddemocracy {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  } /* don't really get flex, tbh */ 
-
-.playable { /* this is the "explorable" stuff */
-  border: none;
-  width: 100%;
-  height: 500px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-}
+  margin: 0 auto;
+  }
 
 .inside { /* for the in-the-hive bee simulations */
+  display: block;
   padding: 40px;
-  margin: .75em 0;
+  margin: .75em 0 1.5em;
   /*overflow: none;
   background-image: url("./images/hexwindow.png");*/
 }
@@ -125,6 +127,19 @@ a {
   width: 100%;
   max-width: 600px;
   pointer-events:none;
+  z-index: 0;
+}
+
+.playable { /* this is the "explorable" stuff */
+  border: none;
+  display: block;
+  width: 500px;
+  max-width: 100%;
+  height: 500px;
+  overflow: hidden;
+  margin: 0 auto;
+  background-color: transparent;
+  z-index: -1;
 }
 
 #footer {
