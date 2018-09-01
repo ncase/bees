@@ -103,14 +103,8 @@ a {
   position: relative;
   font-family: "Roboto Slab", Courier New, Courier, monospace;
   text-align: center;
-<<<<<<< HEAD
   padding: .25em;
   z-index: 1;
-=======
-  margin: .25em auto;
-  padding: 10px 0;
-  background-color: #e5a510;
->>>>>>> d9dab950920d5dbb16e2bd104ddd3930515c87ac
 } /* Maybe this could pop up on the screen and then move up/down out of the way? */
 
 .note {
