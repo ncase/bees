@@ -1,0 +1,141 @@
+<link href="styles.css" rel="stylesheet" type="text/css">
+<div class="stuff"> <!-- This is hacky, but it's what I used to get the canvas centered -->
+    <canvas class="unit" id="canvas_sliders" width="1000" height="1000" style="width:650px; height:650px; border:none solid black;"></canvas>
+
+    <div class="unit" id="sliders">
+        <div class="control_group">
+            <h1 class="control_heading">BEE CONTROLS</h1>
+            <div class="slider_container">
+                <p class="slider_label">return speed</p>
+                <div class="display" id='display_return_speed'></div>
+                <div class="slider">
+                    <input type='range' step="0.1" min='0.1' max='10' value='2' id='slider_return_speed'>
+                    </input>
+                </div>
+            </div>
+            <div class="slider_container">
+                <p class="slider_label">dance speed</p>
+                <div class="display" id='display_dance_speed'></div>
+                <div class="slider">
+                    <input type='range' step="0.1" min='0.1' max='10' value='2' id='slider_dance_speed'>
+                    </input>
+                </div>
+            </div>
+            <div class="slider_container">    
+                <p class="slider_label">regular jitter</p>
+                <div class="display" id='display_bee_jitter'></div>
+                <div class="slider">
+                    <input type='range' step=".01" min='0' max='0.5' value='0.3' id='slider_bee_jitter'>
+                    </input>
+                </div>
+            </div>
+            <div class="slider_container">
+                <p class="slider_label">dance jitter</p>
+                <div class="display" id='display_dance_jitter'></div>
+                <div class="slider">
+                    <input type='range' step="0.1" min='0' max='1' value='0.2' id='slider_dance_jitter'>
+                    </input>
+                </div>
+            </div>
+        </div>
+        <div class="control_group">
+            <h1 class="control_heading">SWARM CONTROLS</h1>
+            <div class="slider_container">
+                <p class="slider_label">swarm speed</p>
+                <div class="display" id='display_swarm_speed'></div>
+                <div class="slider">
+                    <input type='range' step="0.1" min='0.1' max='5' value='1' id='slider_swarm_speed'>
+                    </input>
+                </div>
+            </div>
+            <div class="slider_container">
+                <p class="slider_label">swarm flight speed</p>
+                <div class="display" id='display_flying_speed'></div>
+                <div class="slider">
+                    <input type='range' step="0.1" min='0.1' max='10' value='1' id='slider_flying_speed'>
+                    </input>
+                </div>
+            </div>
+            <div class="slider_container">
+                <p class="slider_label">swarm jitter</p>
+                <div class="display" id='display_swarm_jitter'></div>
+                <div class="slider">
+                    <input type='range' step=".01" min='0' max='0.3' value='0.03' id='slider_swarm_jitter'>
+                    </input>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/Mouse.js"></script>
+<script src="js/sliders.js"></script>
+<style>
+.stuff {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+}
+
+.unit {
+    padding: 25px;
+}
+
+#sliders {
+  width: 900px; 
+  background: #e5a510; 
+  justify-content: center;
+  align-items: center;
+}
+
+.slider_container {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+input {
+    width: 100%;
+}
+
+.control_heading {
+    padding-top: 5px;
+    padding-left: 5px;
+    text-align: center;
+    background: #473010;
+    color: #e5a510;
+}
+
+.control_group {
+    border: #473010 3px solid;
+    margin: 5px;
+}
+
+.slider {
+  padding: 5px;
+  display: flex;
+  flex-grow: 2;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.display {
+    width: 100px;
+    padding: 10px;
+    font-size: 2em;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.slider_label {
+    width: 100px;
+    padding: 10px;
+    display: table-cell; 
+    vertical-align: middle;
+    text-align: right;
+    font-weight: 900;
+}
+</style>

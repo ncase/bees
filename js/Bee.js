@@ -1,3 +1,5 @@
+Math.TAU = Math.PI*2;
+
 function Bee(){
 	
 	var self = this;
@@ -10,11 +12,17 @@ function Bee(){
 
 	self.dancing = false;
 	self.returning = false;
+	self.returnImmediately = false;
+	
+	// BEE BEHAVIOR
 	self.danceSpeed = 2;
+	self.returnSpeed = 1.5;
+	self.jitter = 0.05;
+	self.danceJitter = 0.3;
+
+	self.turnAround = false;
 
 	self.update = function(){
-
-		// console.log("rotation:  " + self.rotation)
 		// Rotation
 		var dx = self.initX - Mouse.x;
 		var dy = self.initY - Mouse.y;
@@ -27,19 +35,13 @@ function Bee(){
 		if(self.dancing && !Mouse.pressed){
 			self.distX = Math.abs(self.x - self.initX);
 			self.distY = Math.abs(self.y - self.initY);
-			self.lineX = self.x;
-			self.lineY = self.y;
-			// self.slope = (self.y - self.initY)/(self.x - self.initX);
-			// self.angle = self.rotation;
 			self.returning = true;
+			self.omega = .99;
 
-			var dx = self.x - self.initX;
-			var dy = self.y - self.initY;
-
-			self.prevRotation = Math.atan2(dy,dx) - Math.TAU/4;
-
-			console.log("STARTED RETURN: " + self.prevRotation)
-
+			self.prevRotation = Math.atan2(self.y - self.initY, self.x - self.initX) - Math.TAU/4;
+			self.prevRotation += (Math.random() >= 0.5 ? ((self.prevRotation <= -Math.TAU/4 && self.prevRotation >= -3*Math.TAU/4) ? Math.TAU : -Math.TAU) : 0);
+			
+			// IF I GET RID OF THIS, THE BEE ALWAYS LOOPS BACK IN A CIRCLE
 			if (self.distX + self.distY <= 45){
 				self.returnImmediately = true;
 			}
@@ -56,30 +58,33 @@ function Bee(){
 		if(self.returning) {
 			var alpha = 0.95;
 
-			// Ah, I'm using these to measure progress along the line from the turnaround point to the initial point, from 0 to 1
-			var progress = 1 - (Math.abs(self.lineX - self.initX)/self.distX + 
-								Math.abs(self.lineY - self.initY)/self.distY)/2;
-			self.lineX = self.lineX*alpha + self.initX*(1-alpha);
-			self.lineY = self.lineY*alpha + self.initY*(1-alpha);
-
 			// The bee changes direction towards its origin faster as it gets closer (makes more progress)
-			var omega = 0.95 - progress*(0.15);
+			if (self.omega > 0.7) {
+				self.omega -= .005;
+			}
 
 			var dx = self.x - self.initX;
 			var dy = self.y - self.initY;
+			var d2 = dx*dx + dy*dy;
+
+			// If we're way too close (avoids unregulated oscillation lol)
+			if(d2 < self.returnSpeed*self.returnSpeed){
+				console.log("yay")
+				self.x = self.initX;
+				self.y = self.initY;
+				self.turnAround = true;
+				self.returnImmediately = false;
+				self.returning = false;
+				return;
+			}
 
 			// Points to the bee's origin
 			var rotation = Math.atan2(dy,dx) - Math.TAU/4;
-			
+
 			// FIXES OUT OF CONTROL OSCILLATION 
 			while (Math.abs(self.prevRotation - rotation) > 1) {
-				// console.log("TRIED TO FIX " + rotation + " => " + (rotation + Math.TAU))
-				if (rotation > self.prevRotation) {
-					rotation -= Math.TAU;
-				}
-				else {
-					rotation += Math.TAU;
-				}
+				// console.log(rotation + " => " + (rotation + (rotation > self.prevRotation ? -Math.TAU : Math.TAU)));
+				rotation += (rotation > self.prevRotation ? -Math.TAU : Math.TAU);
 			}
 			self.prevRotation = rotation;
 
@@ -92,22 +97,15 @@ function Bee(){
 				self.y = self.y*alpha + self.initY*(1-alpha);
 			} else {
 				// Have the bee turn back around according to omega and move a bit in that direction
-				self.rotation = self.rotation*(omega) + (1 - omega)*(rotation);
+				self.rotation = self.rotation*(self.omega) + (1 - self.omega)*(rotation);
 				self.x += Math.sin(self.rotation)*self.danceSpeed;
 				self.y -= Math.cos(self.rotation)*self.danceSpeed;
 			}
+			
+			// IF I GET RID OF THIS, THE BEE ALWAYS LOOPS BACK IN A CIRCLE
 			// If we're too close and nearly facing the origin
 			if(Math.abs(rotation - self.rotation) <= 0.05 && d2 < 10){
 				self.returnImmediately = true;
-			}
-			// If we're way too close (avoids unregulated oscillation lol)
-			if(d2<5){
-				self.x = self.initX;
-				self.y = self.initY;
-				// Again, doesn't work as inteneded (Line 84)
-				self.rotation = rotation*alpha + (1-alpha)*(Math.atan2(self.initY - Mouse.y,self.initX - Mouse.x) - Math.TAU/4 - rotation);
-				self.returnImmediately = false;
-				self.returning = false;
 			}
 		}
 
@@ -124,7 +122,11 @@ function Bee(){
 		// WAGGLE
 		if(self.dancing){
 			self.waggle += 1;
-			var r = Math.sin(self.waggle)*0.3;
+			var r = Math.sin(self.waggle)*self.danceJitter;
+			ctx.rotate(r);
+		} else if (self.returning) {
+			self.waggle += 1;
+			var r = Math.sin(self.waggle)*self.jitter;
 			ctx.rotate(r);
 		}
 		
