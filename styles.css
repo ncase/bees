@@ -48,7 +48,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1em;
+  font-size: 1.1em;
   padding: 0 0 .25em;
 }
 
@@ -104,6 +104,7 @@ a {
   text-align: center;
   padding: .25em;
   z-index: 1;
+  line-height: 1.5em;
 } /* Maybe this could pop up on the screen and then move up/down out of the way? */
 
 .note {
@@ -119,7 +120,7 @@ a {
 }
 
 .hivenote2 {
-  margin: -1.5em auto -.5em;
+  margin: -1.5em auto -.75em;
   width: 95%;
 }
 
@@ -134,7 +135,7 @@ a {
 .inside { /* for the in-the-hive bee simulations */
   display: block;
   padding: 40px;
-  margin: .75em 0 1.5em;
+  margin: 1.5em 0 1.5em;
   /*overflow: none;
   background-image: url("./images/hexwindow.png");*/
 }
